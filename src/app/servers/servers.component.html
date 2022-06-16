@@ -1,0 +1,55 @@
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)" /> -->
+<input
+  placeholder="Server Name"
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName"
+/>
+
+<button
+  class="btn btn-primary"
+  [disabled]="serverName === ''"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+<button
+  class="btn btn-primary"
+  [disabled]="serverName !== '' || servers.length === 0"
+  (click)="onDestroyServer()"
+>
+  Remove Server
+</button>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated">
+  Server was created, server name is {{ updatedServerName }}
+</p>
+<input
+  placeholder="Username"
+  type="text"
+  class="form-control"
+  [(ngModel)]="userName"
+/>
+<button
+  class="btn btn-secondary"
+  [disabled]="userName === ''"
+  (click)="onUpdateUserName()"
+>
+  Enter Username
+</button>
+
+<p *ngIf="userNameCreated">{{ userNameDisplay }}</p>
+
+<app-server *ngFor="let server of servers"></app-server>
+
+<button class="btn btn-info" (click)="onDisplay()">Display Details</button>
+
+<p *ngIf="display">We are the next real thing around</p>
+
+<div
+  *ngFor="let arr of displayArray; let i = index"
+  [ngStyle]="{ backgroundColor: i >= 5 ? 'blue' : 'white' }"
+  [ngClass]="{ 'white-text': i >= 5 }"
+>
+  {{ arr }}
+</div>
